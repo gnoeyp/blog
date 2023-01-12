@@ -2,12 +2,31 @@ import { graphql } from "gatsby";
 import React from "react";
 import Layout from "../components/Layout";
 
-const TilPage = ({ data }: any) => {
+type Data = {
+  allMarkdownRemark: {
+    edges: {
+      node: {
+        id: number;
+        frontmatter: {
+          date: string;
+          slug: string;
+          title: string;
+        };
+      };
+    }[];
+  };
+};
+
+interface TilPageProps {
+  data: Data;
+}
+
+const TilPage = ({ data }: TilPageProps) => {
   return (
     <Layout location="til">
       <div>
         {data.allMarkdownRemark.edges.map(
-          (edge: any) => edge.node.frontmatter.title
+          (edge) => edge.node.frontmatter.title
         )}
       </div>
     </Layout>
