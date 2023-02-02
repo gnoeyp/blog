@@ -1,4 +1,4 @@
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import React from "react";
 import Layout from "../components/Layout";
 
@@ -22,12 +22,15 @@ interface TilPageProps {
 }
 
 const TilPage = ({ data }: TilPageProps) => {
+  const posts = data.allMarkdownRemark.edges;
   return (
     <Layout location="til">
       <div>
-        {data.allMarkdownRemark.edges.map(
-          (edge) => edge.node.frontmatter.title
-        )}
+        {posts.map((post) => (
+          <Link to={`/til${post.node.frontmatter.slug}`}>
+            {post.node.frontmatter.title}
+          </Link>
+        ))}
       </div>
     </Layout>
   );
