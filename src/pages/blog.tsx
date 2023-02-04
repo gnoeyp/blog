@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { graphql, Link } from "gatsby";
 import Layout from "../components/Layout";
 import PostPreview from "../components/PostPreview";
+import { includesArray, removeDuplicatesInArray } from "../utils";
+import Tag from "../components/Tag";
 
 type Data = {
   allMarkdownRemark: {
@@ -12,6 +14,7 @@ type Data = {
           date: string;
           slug: string;
           title: string;
+          tags?: string[];
         };
       };
     }[];
@@ -23,12 +26,47 @@ type BlogPageProps = {
 };
 
 const BlogPage = ({ data }: BlogPageProps) => {
+  const [checkedTags, setCheckedTags] = useState<string[]>([]);
+
   const posts = data.allMarkdownRemark.edges;
+  const tags = removeDuplicatesInArray(
+    posts.reduce<string[]>(
+      (result, post) =>
+        post.node.frontmatter.tags
+          ? [...result, ...post.node.frontmatter.tags]
+          : result,
+      []
+    )
+  );
+
+  const handleClickTag = (tag: string) => {
+    checkedTags.includes(tag)
+      ? setCheckedTags(checkedTags.filter((checkedTag) => checkedTag !== tag))
+      : setCheckedTags([...checkedTags, tag]);
+  };
+
+  const filteredPosts =
+    checkedTags.length > 0
+      ? posts.filter((post) =>
+          includesArray(post.node.frontmatter.tags || [], checkedTags)
+        )
+      : posts;
+
   return (
     <Layout location="blog">
-      <div className="flex justify-center p-5">
-        <div className="w-1/2 flex flex-col gap-5">
-          {posts.map((post) => (
+      <div className="flex flex-col items-center p-5 w-1/2 m-auto">
+        <div className="flex justify-start py-3 w-full">
+          {tags.map((tag) => (
+            <Tag
+              checked={checkedTags.includes(tag)}
+              onClick={() => handleClickTag(tag)}
+            >
+              {tag}
+            </Tag>
+          ))}
+        </div>
+        <div className="w-full flex flex-col gap-5">
+          {filteredPosts.map((post) => (
             <Link to={`/blog/${post.node.frontmatter.slug}`}>
               <PostPreview
                 title={post.node.frontmatter.title}
@@ -52,6 +90,7 @@ export const query = graphql`
             date(formatString: "MMMM DD, YYYY")
             slug
             title
+            tags
           }
         }
       }
