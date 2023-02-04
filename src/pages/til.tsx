@@ -27,9 +27,9 @@ const TilPage = ({ data }: TilPageProps) => {
   return (
     <Layout location="til">
       <div className="flex justify-center p-5">
-        <div className="w-1/2">
+        <div className="w-1/2 flex flex-col gap-5">
           {posts.map((post) => (
-            <Link to={`/til${post.node.frontmatter.slug}`}>
+            <Link to={`/til/${post.node.frontmatter.slug}`}>
               <TilPreview
                 title={post.node.frontmatter.title}
                 date={post.node.frontmatter.date}
