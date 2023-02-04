@@ -55,6 +55,7 @@ const BlogPage = ({ data }: BlogPageProps) => {
         <div className="flex justify-start py-3 w-full">
           {tags.map((tag) => (
             <Tag
+              clickable
               checked={checkedTags.includes(tag)}
               onClick={() => handleClickTag(tag)}
             >
@@ -68,6 +69,7 @@ const BlogPage = ({ data }: BlogPageProps) => {
               <PostPreview
                 title={post.node.frontmatter.title}
                 date={post.node.frontmatter.date}
+                tags={post.node.frontmatter.tags}
               />
             </Link>
           ))}

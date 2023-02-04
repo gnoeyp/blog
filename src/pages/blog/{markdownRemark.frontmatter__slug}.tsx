@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import Layout from "../../components/Layout";
 import { renderAst } from "./utils";
 import type { Node } from "unist";
+import Tag from "../../components/Tag";
 
 type BlogPostTemplateProps = {
   data: {
@@ -11,6 +12,7 @@ type BlogPostTemplateProps = {
         date: string;
         slug: string;
         title: string;
+        tags: string[];
       };
       htmlAst: Node;
     };
@@ -27,6 +29,9 @@ const BlogPostTemplate = ({
     <Layout location="blog">
       <div className="min-w-1/2 max-w-4xl m-auto px-8">
         <h1 className="text-3xl">{frontmatter.title}</h1>
+        {frontmatter.tags.map((tag) => (
+          <Tag size="small">{tag}</Tag>
+        ))}
         <span className="text-sm text-gray-500">{frontmatter.date}</span>
         <div className="py-3">{renderAst(htmlAst)}</div>
       </div>
@@ -42,6 +47,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         slug
         title
+        tags
       }
     }
   }
