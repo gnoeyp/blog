@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../../components/Layout";
-import { renderAst } from "./utils";
+import { renderAst } from "../utils";
 import type { Node } from "unist";
 import Tag from "../../components/Tag";
 
