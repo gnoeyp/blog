@@ -1,11 +1,11 @@
 import React from "react";
 
-interface TilPreviewProps {
+type PostPreviewProps = {
   title: string;
   date: string;
-}
+};
 
-const TilPreview = ({ title, date }: TilPreviewProps) => {
+const PostPreview = ({ title, date }: PostPreviewProps) => {
   return (
     <div className="border rounded-lg p-3 hover:bg-gray-50">
       <div>{title}</div>
@@ -14,4 +14,4 @@ const TilPreview = ({ title, date }: TilPreviewProps) => {
   );
 };
 
-export default TilPreview;
+export default PostPreview;

@@ -1,7 +1,8 @@
+import { Link } from "gatsby";
 import React from "react";
 
 const Logo = () => {
-  return <div>Eunpyeong Hong</div>;
+  return <Link to="/">Eunpyeong Hong</Link>;
 };
 
 export default Logo;

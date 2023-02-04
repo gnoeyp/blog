@@ -1,10 +1,11 @@
 import React from "react";
+import { Location } from "../types";
 import Navigation from "./Navigation";
 
-interface LayoutProps {
+type LayoutProps = {
   children: React.ReactNode;
-  location: "til" | "blog";
-}
+  location: Location;
+};
 
 const Layout = ({ children, location }: LayoutProps) => {
   return (
