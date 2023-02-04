@@ -45,12 +45,9 @@ const BlogPage = ({ data }: BlogPageProps) => {
       : setCheckedTags([...checkedTags, tag]);
   };
 
-  const filteredPosts =
-    checkedTags.length > 0
-      ? posts.filter((post) =>
-          includesArray(post.node.frontmatter.tags || [], checkedTags)
-        )
-      : posts;
+  const filteredPosts = posts.filter((post) =>
+    includesArray(post.node.frontmatter.tags || [], checkedTags)
+  );
 
   return (
     <Layout location="blog">
