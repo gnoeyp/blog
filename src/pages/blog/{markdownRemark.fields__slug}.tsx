@@ -44,7 +44,7 @@ const Ol = (props: ComponentProps<"ol">) => (
 );
 
 const A = (props: ComponentProps<"a">) => (
-  <a className="text-blue-700 hover:text-blue-900" {...props} />
+  <a className="text-blue-600 visited:text-purple-600" {...props} />
 );
 
 const processor = unified().use(rehypeReact, {
