@@ -10,9 +10,12 @@ type Data = {
     edges: {
       node: {
         id: number;
+        fields: {
+          slug: string;
+        };
+        slug: string;
         frontmatter: {
           date: string;
-          slug: string;
           title: string;
           tags?: string[];
         };
@@ -55,6 +58,7 @@ const BlogPage = ({ data }: BlogPageProps) => {
         <div className="flex justify-start py-3 w-full">
           {tags.map((tag) => (
             <Tag
+              key={tag}
               clickable
               checked={checkedTags.includes(tag)}
               onClick={() => handleClickTag(tag)}
@@ -65,7 +69,7 @@ const BlogPage = ({ data }: BlogPageProps) => {
         </div>
         <div className="w-full flex flex-col gap-5">
           {filteredPosts.map((post) => (
-            <Link to={`/blog/${post.node.frontmatter.slug}`}>
+            <Link key={post.node.id} to={`/blog/${post.node.fields.slug}`}>
               <PostPreview
                 title={post.node.frontmatter.title}
                 date={post.node.frontmatter.date}
@@ -85,9 +89,11 @@ export const query = graphql`
       edges {
         node {
           id
+          fields {
+            slug
+          }
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
-            slug
             title
             tags
           }

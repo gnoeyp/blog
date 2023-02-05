@@ -70,9 +70,11 @@ export const renderAst = (ast: Node): JSX.Element => {
 type BlogPostTemplateProps = {
   data: {
     markdownRemark: {
+      fields: {
+        slug: string;
+      };
       frontmatter: {
         date: string;
-        slug: string;
         title: string;
         tags: string[];
       };
@@ -91,8 +93,10 @@ const BlogPostTemplate = ({
     <Layout location="blog">
       <div className="min-w-1/2 max-w-4xl m-auto px-8">
         <h1 className="text-3xl">{frontmatter.title}</h1>
-        {frontmatter.tags.map((tag) => (
-          <Tag size="small">{tag}</Tag>
+        {frontmatter.tags.map((tag, index) => (
+          <Tag key={index} size="small">
+            {tag}
+          </Tag>
         ))}
         <span className="text-sm text-gray-500">{frontmatter.date}</span>
         <div className="py-3">{renderAst(htmlAst)}</div>
@@ -105,9 +109,11 @@ export const pageQuery = graphql`
   query ($id: String!) {
     markdownRemark(id: { eq: $id }) {
       htmlAst
+      fields {
+        slug
+      }
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
-        slug
         title
         tags
       }

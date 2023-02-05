@@ -1,7 +1,6 @@
 ---
 key: post
 title: NaN, isNaN, Number.isNaN
-slug: is-nan
 date: 2022-11-23
 featuredImage: ../../images/default-thumbnail.png
 tags:
