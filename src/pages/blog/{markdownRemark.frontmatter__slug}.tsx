@@ -35,6 +35,18 @@ const P = (props: ComponentProps<"p">) => (
   <p className="text-base" {...props} />
 );
 
+const Ul = (props: ComponentProps<"ul">) => (
+  <ul className="pl-5 list-disc" {...props} />
+);
+
+const Ol = (props: ComponentProps<"ol">) => (
+  <ol className="pl-5 list-decimal" {...props} />
+);
+
+const A = (props: ComponentProps<"a">) => (
+  <a className="text-blue-700 hover:text-blue-900" {...props} />
+);
+
 const processor = unified().use(rehypeReact, {
   createElement: React.createElement,
   components: {
@@ -44,7 +56,10 @@ const processor = unified().use(rehypeReact, {
     h4: H4,
     h5: H5,
     h6: H6,
+    ul: Ul,
+    ol: Ol,
     p: P,
+    a: A,
   },
 });
 
