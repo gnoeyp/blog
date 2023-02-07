@@ -55,7 +55,7 @@ const BlogPage = ({ data }: BlogPageProps) => {
   return (
     <Layout location="blog">
       <div className="flex flex-col items-center p-5 w-1/2 m-auto">
-        <div className="flex justify-start py-3 w-full">
+        <div className="flex gap-2 justify-start py-3 w-full">
           {tags.map((tag) => (
             <Tag
               key={tag}

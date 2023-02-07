@@ -93,11 +93,13 @@ const BlogPostTemplate = ({
     <Layout location="blog">
       <div className="min-w-1/2 max-w-4xl m-auto px-8">
         <h1 className="text-3xl">{frontmatter.title}</h1>
-        {frontmatter.tags.map((tag, index) => (
-          <Tag key={index} size="small">
-            {tag}
-          </Tag>
-        ))}
+        <div className="flex gap-1">
+          {frontmatter.tags.map((tag, index) => (
+            <Tag key={index} size="small">
+              {tag}
+            </Tag>
+          ))}
+        </div>
         <span className="text-sm text-gray-500">{frontmatter.date}</span>
         <div className="py-3">{renderAst(htmlAst)}</div>
       </div>
