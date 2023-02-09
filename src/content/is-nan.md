@@ -1,5 +1,4 @@
 ---
-key: post
 title: NaN, isNaN, Number.isNaN
 date: 2022-11-23
 featuredImage: ../../images/default-thumbnail.png
