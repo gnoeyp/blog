@@ -2,7 +2,7 @@ import React from "react";
 import Tag from "./Tag";
 
 type PostPreviewProps = {
-  title: string;
+  title: React.ReactNode;
   date: string;
   tags?: string[];
 };

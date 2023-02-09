@@ -4,32 +4,22 @@ import Layout from "../components/Layout";
 import PostPreview from "../components/PostPreview";
 import { includesArray, removeDuplicatesInArray } from "../utils";
 import Tag from "../components/Tag";
-
-type Data = {
-  allMarkdownRemark: {
-    edges: {
-      node: {
-        id: number;
-        fields: {
-          slug: string;
-        };
-        slug: string;
-        frontmatter: {
-          date: string;
-          title: string;
-          tags?: string[];
-        };
-      };
-    }[];
-  };
-};
+import Search from "../components/Search";
+import { Post } from "../types";
 
 type BlogPageProps = {
-  data: Data;
+  data: {
+    allMarkdownRemark: {
+      edges: {
+        node: Post;
+      }[];
+    };
+  };
 };
 
 const BlogPage = ({ data }: BlogPageProps) => {
   const [checkedTags, setCheckedTags] = useState<string[]>([]);
+  const [searchValue, setSearchValue] = useState<string>("");
 
   const posts = data.allMarkdownRemark.edges;
   const tags = removeDuplicatesInArray(
@@ -48,13 +38,20 @@ const BlogPage = ({ data }: BlogPageProps) => {
       : setCheckedTags([...checkedTags, tag]);
   };
 
-  const filteredPosts = posts.filter((post) =>
-    includesArray(post.node.frontmatter.tags || [], checkedTags)
-  );
+  const filteredPosts = posts
+    .filter((post) =>
+      includesArray(post.node.frontmatter.tags || [], checkedTags)
+    )
+    .filter((post) =>
+      post.node.frontmatter.title
+        .toLowerCase()
+        .includes(searchValue.toLowerCase())
+    );
 
   return (
     <Layout location="blog">
       <div className="flex flex-col items-center p-5 w-1/2 m-auto">
+        <Search value={searchValue} onChange={setSearchValue} />
         <div className="flex gap-2 justify-start py-3 w-full">
           {tags.map((tag) => (
             <Tag
