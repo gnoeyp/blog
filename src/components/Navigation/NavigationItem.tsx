@@ -13,8 +13,11 @@ const NavigationItem = ({ children, link, selected = false }: ItemProps) => {
     <Link
       to={link}
       className={clsx(
-        "hover:text-gray-500 px-2 py-1",
-        selected && "text-gray-500"
+        "text-gray-500 hover:text-gray-800 px-2 py-1",
+        "relative after:content-[''] after:absolute after:left-1.5 after:right-full after:bg-gray-400 after:h-px after:bottom-0",
+        "hover:after:right-1.5",
+        selected && "text-gray-900 after:right-1.5",
+        !selected && "hover:after:animate-underline"
       )}
     >
       {children}

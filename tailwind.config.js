@@ -9,6 +9,15 @@ module.exports = {
       fontFamily: {
         logo: ["birthday-girl"],
       },
+      keyframes: {
+        underline: {
+          "0%": { transform: "scaleX(0)" },
+          "100%": { transform: "scaleX(1)" },
+        },
+      },
+      animation: {
+        underline: "underline 0.2s ease-in-out ",
+      },
     },
   },
   plugins: [],
