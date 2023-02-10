@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "hello-graduation-sans";
+  src: url("/fonts/HelloGraduationSans-d9enl.ttf");
+}
