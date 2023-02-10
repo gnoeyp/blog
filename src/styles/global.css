@@ -6,3 +6,8 @@
   font-family: "hello-graduation-sans";
   src: url("/fonts/HelloGraduationSans-d9enl.ttf");
 }
+
+@font-face {
+  font-family: "birthday-girl";
+  src: url("/fonts/BirthdayGirlDemo-BWALn.ttf");
+}

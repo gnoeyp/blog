@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        logo: ["hello-graduation-sans"],
+        logo: ["birthday-girl"],
       },
     },
   },
