@@ -49,34 +49,32 @@ const BlogPage = ({ data }: BlogPageProps) => {
     );
 
   return (
-    <Layout location="blog">
-      <div className="flex flex-col items-center p-5 w-1/2 m-auto">
-        <Search value={searchValue} onChange={setSearchValue} />
-        <div className="flex gap-2 justify-start py-3 w-full">
-          {tags.map((tag) => (
-            <Tag
-              key={tag}
-              clickable
-              checked={checkedTags.includes(tag)}
-              onClick={() => handleClickTag(tag)}
-            >
-              {tag}
-            </Tag>
-          ))}
-        </div>
-        <div className="w-full flex flex-col gap-5">
-          {filteredPosts.map((post) => (
-            <Link key={post.node.id} to={`/blog/${post.node.fields.slug}`}>
-              <PostPreview
-                title={post.node.frontmatter.title}
-                date={post.node.frontmatter.date}
-                tags={post.node.frontmatter.tags}
-              />
-            </Link>
-          ))}
-        </div>
+    <div className="flex flex-col items-center p-5 w-1/2 m-auto">
+      <Search value={searchValue} onChange={setSearchValue} />
+      <div className="flex gap-2 justify-start py-3 w-full">
+        {tags.map((tag) => (
+          <Tag
+            key={tag}
+            clickable
+            checked={checkedTags.includes(tag)}
+            onClick={() => handleClickTag(tag)}
+          >
+            {tag}
+          </Tag>
+        ))}
       </div>
-    </Layout>
+      <div className="w-full flex flex-col gap-5">
+        {filteredPosts.map((post) => (
+          <Link key={post.node.id} to={`/blog/${post.node.fields.slug}`}>
+            <PostPreview
+              title={post.node.frontmatter.title}
+              date={post.node.frontmatter.date}
+              tags={post.node.frontmatter.tags}
+            />
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 };
 
