@@ -1,4 +1,5 @@
-export type Location = "main" | "blog";
+const PAGES = ["main", "blog"] as const;
+export type PageName = typeof PAGES[number];
 
 export type Post = {
   id: number;

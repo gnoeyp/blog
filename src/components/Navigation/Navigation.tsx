@@ -1,18 +1,18 @@
 import React from "react";
-import { Location } from "../../types";
+import { PageName } from "../../types";
 import Logo from "../Logo";
 import NavigationItem from "./NavigationItem";
 
 type NavigationProps = {
-  location: Location;
+  pageName: PageName;
 };
 
-const Navigation = ({ location }: NavigationProps) => {
+const Navigation = ({ pageName }: NavigationProps) => {
   return (
     <div className="flex justify-center items-center h-10">
       <Logo />
       <div className="flex px-5">
-        <NavigationItem link="/blog" selected={location === "blog"}>
+        <NavigationItem link="/blog" selected={pageName === "blog"}>
           blog
         </NavigationItem>
       </div>
