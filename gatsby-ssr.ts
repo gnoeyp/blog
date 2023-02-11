@@ -1,6 +1,4 @@
-import React from "react";
 import { createElement } from "react";
-import Layout from "./src/components/Layout";
 import type { GatsbySSR } from "gatsby";
 
 const applyDarkModeClass = `
@@ -22,11 +20,4 @@ export const onRenderBody: GatsbySSR["onRenderBody"] = ({
     },
   });
   setHeadComponents([script]);
-};
-
-export const wrapPageElement: GatsbySSR["wrapPageElement"] = ({
-  element,
-  props,
-}) => {
-  return <Layout {...props}>{element}</Layout>;
 };
