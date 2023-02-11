@@ -9,7 +9,7 @@ type NavigationProps = {
 
 const Navigation = ({ pageName }: NavigationProps) => {
   return (
-    <div className="flex justify-center items-center h-10">
+    <div className="relative flex justify-center items-center h-10">
       <Logo />
       <div className="flex px-5">
         <NavigationItem link="/blog" selected={pageName === "blog"}>

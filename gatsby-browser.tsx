@@ -1,5 +1,5 @@
 import "./src/styles/global.css";
-import "./src/styles/prism-solarizedlight.css";
+import "./src/styles/prism-vsc-dark-plus.css";
 import React from "react";
 import Layout from "./src/components/Layout";
 

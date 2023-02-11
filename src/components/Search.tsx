@@ -11,7 +11,7 @@ const Search = ({ onChange, value }: SearchProps) => {
   return (
     <div className="relative">
       <input
-        className="w-96 h-10 px-10 border rounded-full border-gray-300 outline-none outline-offset-0 focus:outline-lime-100 focus:outline-2 text-gray-900"
+        className="w-96 h-10 px-10 rounded-full border border-gray-400 dark:border-gray-600 outline-none dark:bg-zinc-900 focus:border-lime-400 dark:focus:border-indigo-600 dark:text-gray-100"
         value={value}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           onChange?.(e.target.value)

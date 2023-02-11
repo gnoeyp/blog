@@ -1,4 +1,5 @@
-import React, { useLayoutEffect, useState } from "react";
+import React from "react";
+import useTheme from "../hooks/useTheme";
 import { PageName } from "../types";
 import Navigation from "./Navigation";
 
@@ -9,12 +10,6 @@ type LayoutProps = {
   };
 };
 
-const getInitTheme = () => {
-  if (["dark", "light"].includes(localStorage.theme)) return localStorage.theme;
-  if (window.matchMedia("(prefers-color-scheme: dark)").matches) return "dark";
-  return "light";
-};
-
 const getPageName = (pathname: string): PageName => {
   if (["blog"].includes(pathname.split("/")[1])) return "blog";
   if (!pathname.split("/")[1]) return "main";
@@ -22,28 +17,20 @@ const getPageName = (pathname: string): PageName => {
 };
 
 const Layout = ({ children, location }: LayoutProps) => {
-  const [theme, setTheme] = useState<"dark" | "light">(getInitTheme());
-
-  useLayoutEffect(() => {
-    document.documentElement.classList.remove("dark");
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-      localStorage.theme = "dark";
-    } else {
-      localStorage.theme = "light";
-    }
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
-
+  const [theme, toggleTheme] = useTheme();
   return (
-    <div className="dark:bg-gray-800 max-h-full min-h-screen">
-      <button onClick={toggleTheme} className="border rounded">
-        Toggle Theme
-      </button>
-      <Navigation pageName={getPageName(location.pathname)} />
+    <div className="dark:bg-zinc-900 max-h-full min-h-screen">
+      <div className="relative w-1/2 m-auto">
+        <Navigation pageName={getPageName(location.pathname)} />
+        <div
+          className="absolute h-full top-0 right-0 flex items-center"
+          onClick={toggleTheme}
+        >
+          <button className="border border-gray-600 text-gray-600 p-1 rounded-sm dark:border-gray-100 dark:text-gray-100">
+            {theme === "dark" ? "Light" : "Dark"}
+          </button>
+        </div>
+      </div>
       {children}
     </div>
   );
