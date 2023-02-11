@@ -1,3 +1,4 @@
+import React from "react";
 import { createElement } from "react";
 import Layout from "./src/components/Layout";
 import type { GatsbySSR } from "gatsby";
