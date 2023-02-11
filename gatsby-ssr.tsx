@@ -1,5 +1,6 @@
 import { createElement } from "react";
 import Layout from "./src/components/Layout";
+import type { GatsbySSR } from "gatsby";
 
 const applyDarkModeClass = `
   try {
@@ -11,7 +12,9 @@ const applyDarkModeClass = `
   }
 `;
 
-export const onRenderBody = ({ setHeadComponents }) => {
+export const onRenderBody: GatsbySSR["onRenderBody"] = ({
+  setHeadComponents,
+}) => {
   const script = createElement("script", {
     dangerouslySetInnerHTML: {
       __html: applyDarkModeClass,
@@ -20,6 +23,9 @@ export const onRenderBody = ({ setHeadComponents }) => {
   setHeadComponents([script]);
 };
 
-export const wrapPageElement = ({ element, props }) => {
+export const wrapPageElement: GatsbySSR["wrapPageElement"] = ({
+  element,
+  props,
+}) => {
   return <Layout {...props}>{element}</Layout>;
 };
