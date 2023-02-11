@@ -13,11 +13,11 @@ const useTheme = (): [Theme, () => void] => {
   const [theme, setTheme] = useState<Theme>(getInitTheme());
 
   useLayoutEffect(() => {
-    document.documentElement.classList.remove("dark");
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
       localStorage.theme = "dark";
     } else {
+      document.documentElement.classList.remove("dark");
       localStorage.theme = "light";
     }
   }, [theme]);

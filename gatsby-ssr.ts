@@ -2,12 +2,10 @@ import { createElement } from "react";
 import type { GatsbySSR } from "gatsby";
 
 const applyDarkModeClass = `
-  try {
-    if (localStorage.getItem('theme') === 'dark') {
-      document.documentElement.classList.add('dark')
-    } else if (!localStorage.getItem('theme') && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      document.documentElement.classList.add('dark')
-    }
+  if (localStorage.getItem('theme') === 'dark') {
+    document.documentElement.classList.add('dark')
+  } else if (!localStorage.getItem('theme') && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    document.documentElement.classList.add('dark')
   }
 `;
 
