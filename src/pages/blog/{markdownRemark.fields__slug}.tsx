@@ -46,6 +46,13 @@ const A = (props: ComponentProps<"a">) => (
   <a className="text-blue-600 visited:text-purple-600" {...props} />
 );
 
+const Blockquote = (props: ComponentProps<"blockquote">) => (
+  <blockquote
+    className="italic border-l-8 border-gray-200 px-3 py-1 bg-gray-50"
+    {...props}
+  />
+);
+
 const processor = unified().use(rehypeReact, {
   createElement: React.createElement,
   components: {
@@ -59,6 +66,7 @@ const processor = unified().use(rehypeReact, {
     ol: Ol,
     p: P,
     a: A,
+    blockquote: Blockquote,
   },
 });
 
