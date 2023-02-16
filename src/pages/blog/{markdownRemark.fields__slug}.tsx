@@ -31,7 +31,7 @@ const H6 = (props: ComponentProps<"h6">) => (
 );
 
 const P = (props: ComponentProps<"p">) => (
-  <p className="text-base" {...props} />
+  <p className="text-base mb-3" {...props} />
 );
 
 const Ul = (props: ComponentProps<"ul">) => (
@@ -109,7 +109,9 @@ const BlogPostTemplate = ({
       <span className="text-sm text-gray-500 dark:text-gray-300">
         {frontmatter.date}
       </span>
-      <div className="py-3 dark:text-gray-100">{renderAst(htmlAst)}</div>
+      <div className="py-3 dark:text-gray-100 leading-relaxed">
+        {renderAst(htmlAst)}
+      </div>
     </div>
   );
 };

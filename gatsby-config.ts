@@ -10,6 +10,7 @@ const config: GatsbyConfig = {
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
+    "gatsby-plugin-sharp",
     "gatsby-plugin-postcss",
     {
       resolve: `gatsby-transformer-remark`,
@@ -23,6 +24,12 @@ const config: GatsbyConfig = {
               aliases: {},
               showLineNumbers: true,
               noInlineHighlight: false,
+            },
+          },
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1000,
             },
           },
         ],
