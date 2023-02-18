@@ -3,6 +3,7 @@ import { useLayoutEffect, useState } from "react";
 type Theme = "dark" | "light";
 
 const getInitTheme = (): Theme => {
+  if (typeof window === "undefined") return "light";
   if (localStorage.theme === "dark") return "dark";
   if (localStorage.theme === "light") return "light";
   if (window.matchMedia("(prefers-color-scheme: dark)").matches) return "dark";
@@ -13,6 +14,7 @@ const useTheme = (): [Theme, () => void] => {
   const [theme, setTheme] = useState<Theme>(getInitTheme());
 
   useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
       localStorage.theme = "dark";
