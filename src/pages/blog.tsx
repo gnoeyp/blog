@@ -48,7 +48,7 @@ const BlogPage = ({ data }: BlogPageProps) => {
     );
 
   return (
-    <div className="dark:bg-zinc-900 flex flex-col items-center p-5 w-1/2 m-auto">
+    <div className="flex flex-col items-center p-5 w-1/2 m-auto">
       <Search value={searchValue} onChange={setSearchValue} />
       <div className="flex gap-2 justify-start py-3 w-full">
         {tags.map((tag) => (
