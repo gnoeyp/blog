@@ -11,3 +11,7 @@
   font-family: "birthday-girl";
   src: url("/fonts/BirthdayGirlDemo-BWALn.ttf");
 }
+
+html.dark body {
+  @apply bg-zinc-900;
+}
