@@ -11,8 +11,9 @@ type LayoutProps = {
 };
 
 const getPageName = (pathname: string): PageName => {
-  if (["blog"].includes(pathname.split("/")[1])) return "blog";
   if (!pathname.split("/")[1]) return "main";
+  const pageName = pathname.split("/")[1];
+  if (pageName === "blog" || pageName === "til") return pageName;
   return "main";
 };
 

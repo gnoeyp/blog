@@ -6,7 +6,7 @@ import Tag from "../components/Tag";
 import Search from "../components/Search";
 import { Post } from "../types";
 
-type BlogPageProps = {
+type TilPageProps = {
   data: {
     allMarkdownRemark: {
       edges: {
@@ -16,7 +16,7 @@ type BlogPageProps = {
   };
 };
 
-const BlogPage = ({ data }: BlogPageProps) => {
+const TilPage = ({ data }: TilPageProps) => {
   const [checkedTags, setCheckedTags] = useState<string[]>([]);
   const [searchValue, setSearchValue] = useState<string>("");
 
@@ -80,7 +80,7 @@ const BlogPage = ({ data }: BlogPageProps) => {
 export const query = graphql`
   query {
     allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "/content/blog/" } }
+      filter: { fileAbsolutePath: { regex: "/content/til/" } }
       sort: { frontmatter: { date: DESC } }
     ) {
       edges {
@@ -100,4 +100,4 @@ export const query = graphql`
   }
 `;
 
-export default BlogPage;
+export default TilPage;

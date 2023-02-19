@@ -1,4 +1,4 @@
-const PAGES = ["main", "blog"] as const;
+const PAGES = ["main", "blog", "til"] as const;
 export type PageName = typeof PAGES[number];
 
 export type Post = {

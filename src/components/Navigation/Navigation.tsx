@@ -8,12 +8,16 @@ type NavigationProps = {
 };
 
 const Navigation = ({ pageName }: NavigationProps) => {
+  console.log(pageName);
   return (
     <div className="relative flex justify-center items-center h-10">
       <Logo />
       <div className="flex px-5">
         <NavigationItem link="/blog" selected={pageName === "blog"}>
           blog
+        </NavigationItem>
+        <NavigationItem link="/til" selected={pageName === "til"}>
+          TIL
         </NavigationItem>
       </div>
     </div>
