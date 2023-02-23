@@ -8,7 +8,6 @@ type NavigationProps = {
 };
 
 const Navigation = ({ pageName }: NavigationProps) => {
-  console.log(pageName);
   return (
     <div className="relative flex justify-center items-center h-10">
       <Logo />

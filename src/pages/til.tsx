@@ -17,10 +17,9 @@ type TilPageProps = {
 const TilPage = ({ data }: TilPageProps) => {
   const [searchValue, setSearchValue] = useState<string>("");
   const posts = data.allMarkdownRemark.edges;
-  console.log(posts);
 
   return (
-    <div className="flex flex-col items-center p-5 w-1/2 m-auto">
+    <div className="flex flex-col items-center p-5 w-1/2 m-auto gap-8">
       <Search value={searchValue} onChange={setSearchValue} />
       <div className="w-full flex flex-col gap-5">
         {posts.map((post) => (

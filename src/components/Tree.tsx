@@ -28,10 +28,9 @@ type LeafProps = {
 };
 
 const Leaf = ({ data }: LeafProps) => {
-  console.log(data);
   return (
     <Link to={data.slug}>
-      <div>{data.title}</div>
+      <div className="text-slate-500 hover:text-slate-800">{data.title}</div>
     </Link>
   );
 };
@@ -40,7 +39,10 @@ const InnerTree = ({ data }: InnerTreeProps) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="cursor-pointer">
-      <div onClick={() => setIsOpen(!isOpen)}>
+      <div
+        className="text-lg text-slate-800 flex items-center gap-2"
+        onClick={() => setIsOpen(!isOpen)}
+      >
         {data.title}{" "}
         {isOpen ? (
           <FontAwesomeIcon icon={faCaretUp} />

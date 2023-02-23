@@ -82,7 +82,6 @@ const TilTree = () => {
   const treeData = convertToTreeData(
     data.allMarkdownRemark.edges.map((edge) => edge.node)
   );
-  console.log(treeData);
   return <Tree data={treeData} />;
 };
 
