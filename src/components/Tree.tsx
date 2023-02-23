@@ -6,14 +6,12 @@ import React, { useState } from "react";
 export type TreeLeaf = {
   type: "leaf";
   title: string;
-  id: string;
   slug: string;
 };
 
 export type TreeDirectory = {
   type: "directory";
   title: string;
-  id: string;
   children: (TreeDirectory | TreeLeaf)[];
 };
 

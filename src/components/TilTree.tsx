@@ -20,18 +20,16 @@ const convertToTreeData = (posts: Post[]) => {
       return {
         type: "leaf",
         title: splittedPath[0],
-        id: splittedPath[0],
         slug,
       };
     return {
       type: "directory",
       title: splittedPath[0],
-      id: splittedPath[0],
       children: [createTree(splittedPath.slice(1), slug)],
     };
   };
   const find = (tree: TreeDirectory[], splittedPath: string[]) =>
-    tree.find((node) => node.id === splittedPath[0]);
+    tree.find((node) => node.title === splittedPath[0]);
   const isDirectory = (tree: TreeDirectory | TreeLeaf): tree is TreeDirectory =>
     tree.type === "directory";
   const addToResult = (
@@ -68,7 +66,6 @@ const TilTree = () => {
       ) {
         edges {
           node {
-            id
             fields {
               slug
             }
