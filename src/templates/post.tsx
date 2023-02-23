@@ -1,7 +1,7 @@
 import React, { ComponentProps } from "react";
 import { graphql } from "gatsby";
 import type { Node } from "unist";
-import Tag from "../../components/Tag";
+import Tag from "../components/Tag";
 import rehypeReact from "rehype-react";
 import { unified } from "unified";
 import { Root } from "rehype-react/lib";
@@ -117,8 +117,8 @@ const BlogPostTemplate = ({
 };
 
 export const pageQuery = graphql`
-  query ($id: String!) {
-    markdownRemark(id: { eq: $id }) {
+  query ($slug: String!) {
+    markdownRemark(fields: { slug: { eq: $slug } }) {
       htmlAst
       fields {
         slug

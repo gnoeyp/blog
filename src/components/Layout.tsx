@@ -2,6 +2,7 @@ import React from "react";
 import useTheme from "../hooks/useTheme";
 import { PageName } from "../types";
 import Navigation from "./Navigation";
+import TilTree from "./TilTree";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -19,10 +20,11 @@ const getPageName = (pathname: string): PageName => {
 
 const Layout = ({ children, location }: LayoutProps) => {
   const [theme, toggleTheme] = useTheme();
+  const pageName = getPageName(location.pathname);
   return (
     <div className="dark:bg-zinc-900 max-h-full min-h-screen">
       <div className="relative w-1/2 m-auto">
-        <Navigation pageName={getPageName(location.pathname)} />
+        <Navigation pageName={pageName} />
         <div
           className="absolute h-full top-0 right-0 flex items-center"
           onClick={toggleTheme}
@@ -32,6 +34,11 @@ const Layout = ({ children, location }: LayoutProps) => {
           </button>
         </div>
       </div>
+      {pageName === "til" && (
+        <div className="absolute">
+          <TilTree />
+        </div>
+      )}
       {children}
     </div>
   );

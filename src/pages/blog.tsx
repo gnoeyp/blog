@@ -64,7 +64,7 @@ const BlogPage = ({ data }: BlogPageProps) => {
       </div>
       <div className="w-full flex flex-col gap-5">
         {filteredPosts.map((post) => (
-          <Link key={post.node.id} to={`/blog/${post.node.fields.slug}`}>
+          <Link key={post.node.id} to={post.node.fields.slug}>
             <PostPreview
               title={post.node.frontmatter.title}
               date={post.node.frontmatter.date}
