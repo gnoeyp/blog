@@ -1,16 +1,16 @@
 import React from "react";
 import InnerTree from "./InnerTree";
 import Leaf from "./Leaf";
-import { TreeDirectory, TreeLeaf } from "./types";
+import { TreeRoot } from "./types";
 
 type TreeProps = {
-  data: (TreeDirectory | TreeLeaf)[];
+  tree: TreeRoot;
 };
 
-const Tree = ({ data }: TreeProps) => {
+const Tree = ({ tree }: TreeProps) => {
   return (
     <div>
-      {data.map((node) => (
+      {tree.children.map((node) => (
         <div>
           {node.type === "directory" ? (
             <InnerTree data={node} />

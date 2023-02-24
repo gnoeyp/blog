@@ -1,7 +1,8 @@
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { Post } from "../types";
-import Tree, { TreeDirectory, TreeLeaf } from "./Tree";
+import Tree from "./Tree";
+import convertToTreeData from "./convertToTreeData";
 
 type Data = {
   allMarkdownRemark: {
@@ -9,52 +10,6 @@ type Data = {
       node: Post;
     }[];
   };
-};
-const convertToTreeData = (posts: Post[]) => {
-  const result: (TreeDirectory | TreeLeaf)[] = [];
-  const createTree = (
-    splittedPath: string[],
-    slug: string
-  ): TreeLeaf | TreeDirectory => {
-    if (splittedPath.length === 1)
-      return {
-        type: "leaf",
-        title: splittedPath[0],
-        slug,
-      };
-    return {
-      type: "directory",
-      title: splittedPath[0],
-      children: [createTree(splittedPath.slice(1), slug)],
-    };
-  };
-  const find = (tree: TreeDirectory[], splittedPath: string[]) =>
-    tree.find((node) => node.title === splittedPath[0]);
-  const isDirectory = (tree: TreeDirectory | TreeLeaf): tree is TreeDirectory =>
-    tree.type === "directory";
-  const addToResult = (
-    tree: TreeDirectory,
-    splittedPath: string[],
-    slug: string
-  ) => {
-    const subtree = find(tree.children.filter(isDirectory), splittedPath);
-    if (!subtree) {
-      tree.children.push(createTree(splittedPath, slug));
-    } else {
-      addToResult(subtree, splittedPath.slice(1), slug);
-    }
-  };
-  posts.forEach((post) => {
-    const { slug } = post.fields;
-    const splittedPath = slug.split("/").slice(2, -1);
-    const tree = find(result.filter(isDirectory), splittedPath);
-    if (tree) {
-      addToResult(tree, splittedPath.slice(1), slug);
-    } else {
-      result.push(createTree(splittedPath, slug));
-    }
-  });
-  return result;
 };
 
 const TilTree = () => {
@@ -82,7 +37,7 @@ const TilTree = () => {
   const treeData = convertToTreeData(
     data.allMarkdownRemark.edges.map((edge) => edge.node)
   );
-  return <Tree data={treeData} />;
+  return <Tree tree={treeData} />;
 };
 
 export default TilTree;
