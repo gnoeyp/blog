@@ -12,7 +12,7 @@ const Leaf = ({ data }: LeafProps) => {
     <Link to={data.slug}>
       <div
         className={clsx(
-          "text-slate-500 hover:text-slate-800",
+          "text-slate-500 hover:text-slate-800 dark:text-gray-100 dark:hover:text-white",
           data.isSelected && "underline"
         )}
       >

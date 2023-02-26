@@ -9,7 +9,7 @@ type TreeProps = {
 
 const Tree = ({ tree }: TreeProps) => {
   return (
-    <div>
+    <div className="dark:text-gray-100">
       {tree.children.map((node) => (
         <div>
           {node.type === "directory" ? (

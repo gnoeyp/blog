@@ -13,7 +13,7 @@ const InnerTree = ({ data }: InnerTreeProps) => {
   return (
     <div className="cursor-pointer">
       <div
-        className="text-lg text-slate-800 flex items-center gap-2"
+        className="text-lg text-slate-800 dark:text-gray-100 flex items-center gap-2"
         onClick={() => setIsOpen(!isOpen)}
       >
         {data.title}
