@@ -1,3 +1,5 @@
+import { faMoon, faSun } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import useTheme from "../hooks/useTheme";
 import { PageName } from "../types";
@@ -29,8 +31,12 @@ const Layout = ({ children, location }: LayoutProps) => {
           className="absolute h-full top-0 right-0 flex items-center"
           onClick={toggleTheme}
         >
-          <button className="border border-gray-600 text-gray-600 p-1 rounded-sm dark:border-gray-100 dark:text-gray-100">
-            {theme === "dark" ? "Light" : "Dark"}
+          <button className="border border-gray-600 text-gray-600 w-7 h-7 rounded-sm dark:border-gray-100 dark:text-gray-100">
+            {theme === "dark" ? (
+              <FontAwesomeIcon icon={faMoon} />
+            ) : (
+              <FontAwesomeIcon icon={faSun} />
+            )}
           </button>
         </div>
       </div>
