@@ -83,7 +83,7 @@ type BlogPostTemplateProps = {
       frontmatter: {
         date: string;
         title: string;
-        tags: string[];
+        tags?: string[];
       };
       htmlAst: Node;
     };
@@ -100,7 +100,7 @@ const BlogPostTemplate = ({
     <div className="min-w-1/2 max-w-4xl m-auto px-8">
       <h1 className="text-3xl dark:text-gray-100">{frontmatter.title}</h1>
       <div className="flex gap-1">
-        {frontmatter.tags.map((tag, index) => (
+        {frontmatter.tags?.map((tag, index) => (
           <Tag key={index} size="small">
             {tag}
           </Tag>

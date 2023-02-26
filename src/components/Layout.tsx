@@ -36,7 +36,7 @@ const Layout = ({ children, location }: LayoutProps) => {
       </div>
       {pageName === "til" && (
         <div className="absolute left-20 top-20">
-          <TilTree />
+          <TilTree location={location} />
         </div>
       )}
       {children}
